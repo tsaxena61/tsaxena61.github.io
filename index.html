@@ -1179,6 +1179,16 @@ html,body{overflow-anchor:none}
   .svcrow .bd{padding:0 12px 14px 50px}
 }
 #h-comp .tip{top:auto;bottom:-32px}
+
+/* ===== v75: tablet/landscape layout, legibility, touch targets ===== */
+@media (max-width:1100px){
+  .offgrid{grid-template-columns:minmax(0,1fr) !important;justify-items:start !important}
+  .offgrid .offtext p{max-width:none}
+}
+.cases small,.compb small,.plaque small{font-size:11px !important;line-height:1.35}
+.see{padding:7px 2px !important;margin-top:3px !important}
+@media (pointer:coarse){.see{padding:10px 4px !important}}
+.passport small,.pp small{font-size:11px !important}
 </style>
 
 <section class="platform"><div class="wrap">
@@ -1984,8 +1994,9 @@ sfx=function(kind){if(!MINE2[kind])return _sfx2(kind);(window.__sl=window.__sl||
 if(SW){document.documentElement.classList.add('swmode');if(!isCoarse)document.documentElement.classList.add('fine');strip.classList.remove('sd');
  const sp=document.createElement('div');sp.className='swsp';vp.appendChild(sp);
  const snaps=[0,1,2,3,4].map(()=>{const m=document.createElement('i');m.className='swsnap';vp.appendChild(m);return m});
+ const st0=document.getElementById('stage');let chromeH=null;
  const pinAv=(x)=>{x=(x===undefined?vp.scrollLeft:x);av.style.left=(avX+x)+'px';bub.style.left=(avX+60*s+x)+'px'};
- const fix=()=>{ride.style.height='';strip.style.transform='scale('+s+')';sp.style.width=Math.ceil(STRIPW*s)+'px';snaps.forEach((m,i)=>m.style.left=Math.max(0,Math.min(maxX,coachX(i)*s-16))+'px');pinAv()};
+ const fix=()=>{ride.style.height='';strip.style.transform='scale('+s+')';if(SW&&st0){if(chromeH===null){st0.style.height='';vp.style.height='';chromeH=Math.round(st0.getBoundingClientRect().height-vp.getBoundingClientRect().height)}const need=Math.ceil(760*s);if(chromeH+need<innerHeight-4){st0.style.height=(chromeH+need)+'px';vp.style.height=need+'px'}else{st0.style.height='';vp.style.height=''}}sp.style.width=Math.ceil(STRIPW*s)+'px';snaps.forEach((m,i)=>m.style.left=Math.max(0,Math.min(maxX,coachX(i)*s-16))+'px');pinAv()};
  const _lay=layout;layout=function(){_lay();fix()};addEventListener('resize',fix);
  update=function(){};
  let wt;vp.addEventListener('scroll',()=>{const x=vp.scrollLeft;const dir=x>curX?1:-1;curX=tgtX=x;lastMoveT=performance.now();pinAv(x);place(x);
@@ -1993,7 +2004,7 @@ if(SW){document.documentElement.classList.add('swmode');if(!isCoarse)document.do
  goCoach=function(i){i=Math.max(0,Math.min(4,i));const x=Math.min(maxX,Math.max(0,coachX(i)*s-16));const r=ride.getBoundingClientRect();if(Math.abs(r.top)>4)ride.scrollIntoView({behavior:'smooth'});vp.scrollTo({left:x,behavior:'smooth'})};
  if(!isCoarse){
   vp.style.scrollSnapType='none';
-  vp.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;var atL=vp.scrollLeft<=0,atR=vp.scrollLeft>=vp.scrollWidth-vp.clientWidth-1;if((e.deltaY<0&&atL)||(e.deltaY>0&&atR))return;var st=document.getElementById('stage').getBoundingClientRect();if(st.top>2||st.bottom<innerHeight-2){if(Math.abs(st.top)<innerHeight*0.6){e.preventDefault();scrollBy(0,st.top);}return;}e.preventDefault();vp.scrollLeft+=e.deltaY;},{passive:false});
+  vp.addEventListener('wheel',function(e){if(Math.abs(e.deltaX)>Math.abs(e.deltaY))return;var atL=vp.scrollLeft<=0,atR=vp.scrollLeft>=vp.scrollWidth-vp.clientWidth-1;if((e.deltaY<0&&atL)||(e.deltaY>0&&atR))return;var st=document.getElementById('stage').getBoundingClientRect();if(Math.abs(st.top)>2||(st.height>innerHeight+2&&st.bottom<innerHeight-2)){if(Math.abs(st.top)<innerHeight*0.6){e.preventDefault();scrollBy(0,st.top);}return;}e.preventDefault();vp.scrollLeft+=e.deltaY;},{passive:false});
   var dg=false,px=0,pl=0,moved=0;
   vp.addEventListener('pointerdown',function(e){if(e.button!==0)return;if(e.target.closest('a,button,input,textarea,.hot,.hanger,.mreel,.stk,[data-case],[data-go],.ftab,.avatar .head'))return;dg=true;moved=0;px=e.clientX;pl=vp.scrollLeft;vp.classList.add('grabbing');try{vp.setPointerCapture(e.pointerId)}catch(_){}});
   vp.addEventListener('pointermove',function(e){if(!dg)return;var d=e.clientX-px;if(Math.abs(d)>moved)moved=Math.abs(d);vp.scrollLeft=pl-d;});
