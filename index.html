@@ -1140,6 +1140,21 @@ html,body{overflow-anchor:none}
 .briefsub{font-size:clamp(16px,1.6vw,21px);line-height:1.45;color:#e9eefb;max-width:30em;margin:0 0 14px;font-weight:600}
 .briefsub span{display:block;padding-left:14px;border-left:3px solid #f0c419;margin-bottom:7px}
 .briefsub span+span{border-left-color:var(--mag,#e8336d)}
+
+/* ===== v64: off-duty copy column + collapsible spec idea ===== */
+.offtext p{margin:0 0 12px;color:#dbe2f0;font-size:15.5px;line-height:1.55;max-width:38em}
+.offtext p:last-child{margin-bottom:0;color:#fff;font-weight:600}
+.ownd{margin-top:26px;border:1px solid #2a3450;border-radius:16px;background:#0c1222aa;overflow:hidden}
+.ownd summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;flex-direction:column;gap:3px}
+.ownd summary::-webkit-details-marker{display:none}
+.ownd summary b{font:800 18px var(--f-body);color:#fff}
+.ownd summary span{font-size:14px;color:var(--muted)}
+.ownd summary:hover b{color:var(--sign)}
+.ownd summary::after{content:'Open ▾';position:absolute;right:18px;margin-top:2px;font:700 13px var(--f-body);color:var(--sign)}
+.ownd{position:relative}
+.ownd[open] summary::after{content:'Close ▴'}
+.ownd[open] summary{border-bottom:1px solid #2a3450;margin-bottom:16px}
+.ownd .ideacar{padding:0 18px 18px}
 </style>
 
 <section class="platform"><div class="wrap">
@@ -1266,7 +1281,7 @@ html,body{overflow-anchor:none}
     <div class="indsig" id="indSig"></div><div class="steps4" id="indS" role="tabpanel"></div><div class="eye" id="indEye"></div>
     <div class="note">Built on recent, published data (sources linked). This shows how I think, not a plan for any one company.</div>
   </div>
-  <h3 class="own">One idea of my own, worked through</h3>
+  <details class="ownd"><summary><b>One idea of my own, worked through</b><span>A spec brief I set myself, start to finish. Open it if you want to see how I build one.</span></summary>
   <div class="ideacar">
     <div class="receipt" id="rcpt">
       <div class="prhd"><span>TANISHA'S IDEA KITCHEN</span><span>NO. 0001</span></div>
@@ -1296,6 +1311,7 @@ html,body{overflow-anchor:none}
       <div class="foryou" id="foryou">Hiring for a brand? I'll bring a one-page idea for your brand to our first call.</div>
     </div>
   </div>
+  </details>
 </div></section>
 
 <section class="sec" id="steal"><div class="wrap">
@@ -1313,7 +1329,12 @@ html,body{overflow-anchor:none}
       <div class="pp-cover"><small>REPUBLIC OF</small><b>WANDERLUST</b><span class="emb">✈</span><small>Tap to open the journey</small></div>
       <div class="pp-page"><div class="pp-h">VISAS &amp; ENTRIES</div><div class="pp-stamps" id="ppStamps"></div><div class="pp-count"><b id="ppN">0</b> countries before 25</div></div>
     </div>
-    <div><button type="button" class="flipc" id="flipc" aria-label="Photo of Tanisha. Tap to flip for a fun fact."><span class="in"><span class="fr"><img id="ffimg" alt="Photo of Tanisha"><span class="n" id="ffn">1 / 6 · tap to flip</span></span><span class="bk" id="ffbk"></span></span></button><div class="fliphint" id="ffhint">Tap the photo to flip it. Tap again for the next one.</div></div>
+    <div><button type="button" class="flipc" id="flipc" aria-label="Photo of Tanisha. Tap to flip for a fun fact."><span class="in"><span class="fr"><img id="ffimg" alt="Photo of Tanisha"><span class="n" id="ffn">1 / 6</span></span><span class="bk" id="ffbk"></span></span></button><div class="fliphint" id="ffhint">Tap the photo for the story behind it, then tap again for the next one.</div></div>
+    <div class="offtext">
+      <p>I have been to 25 countries before turning 25, and I spent more of that time underwater than on land. Scuba and snorkelling are the closest thing I have to a reset button. They also taught me that the interesting things are rarely on the surface.</p>
+      <p>On campus I play pickleball, table tennis, basketball and a genuinely average game of squash. A professor who taught us frisbee explained that the sport treats its Spirit of the Game trophy as seriously as the winner's trophy. That has stayed with me longer than most things I have been taught about strategy. How you play counts as much as whether you win.</p>
+      <p>The through line is that I like building things with other people, and I like doing it well enough to be proud of how it happened.</p>
+    </div>
     <div class="ttl2" hidden>
       <div class="game"><div class="gh"><b>Two truths and a lie</b><small>Tap the one you think is the lie</small></div><div class="gopts" id="tt"></div><div class="gout" id="ttOut"></div></div>
       
@@ -1801,7 +1822,7 @@ const FF=[['p3','🤿','Fun fact 01','More time underwater than on land','Scuba 
  ['p5','🎓','Fun fact 05','DPS → LSR → ISB','School at DPS, a B.Com (Hons) at Lady Shri Ram College for Women, and now the PGP at ISB.'],
  ['p6','🤝','Fun fact 06','The through line','I like building things with other people, and doing it well enough to be proud of how it happened.']];
 let ff=0;const fc=$('#flipc');
-function ffFront(k){ff=(k+FF.length)%FF.length;const f=FF[ff];fc.classList.remove('back');$('#ffimg').src=PH[f[0]];$('#ffn').textContent=(ff+1)+' / '+FF.length+' · tap to flip';
+function ffFront(k){ff=(k+FF.length)%FF.length;const f=FF[ff];fc.classList.remove('back');$('#ffimg').src=PH[f[0]];$('#ffn').textContent=(ff+1)+' / '+FF.length;
  $('#ffbk').innerHTML='<em>'+f[1]+'</em><small>'+f[2].toUpperCase()+'</small><h4>'+f[3]+'</h4><p>'+f[4]+'</p><span class="nx">Tap for the next photo →</span>';fc.classList.remove('swap');void fc.offsetWidth;fc.classList.add('swap')}
 fc.onclick=()=>{if(!fc.classList.contains('back')){fc.classList.add('back');sfx('flip')}else{sfx('swipe');ffFront(ff+1)}};
 ffFront(0);
