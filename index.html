@@ -747,8 +747,8 @@ body{overflow-x:clip}
 @keyframes tick{40%{transform:scale(1.08)}}
 
 /* ===== v12 ===== */
-.hero h1{font-size:clamp(60px,7.8vw,122px);line-height:.86;margin:.08em 0 .14em}
-.hero .lede{font-size:clamp(16px,1.35vw,19px)}
+.hero h1{font-size:clamp(42px,5.4vw,82px);line-height:.88;margin:.06em 0 .12em}
+.hero .lede{font-size:clamp(14.5px,1.1vw,16.5px)}
 .hero{gap:20px}
 /* brands block */
 .brandsblk{position:absolute;left:40px;top:510px;width:430px;z-index:5}
@@ -1127,26 +1127,26 @@ html,body{overflow-anchor:none}
 
 
 /* ===== v60: the positioning line, given its own weight ===== */
-.briefline{font-size:clamp(23px,2.9vw,40px);line-height:1.12;font-weight:800;color:#fff;max-width:17em;margin:2px 0 14px;letter-spacing:-.01em}
+.briefline{font-size:clamp(19px,2.1vw,30px);line-height:1.12;font-weight:800;color:#fff;max-width:17em;margin:2px 0 14px;letter-spacing:-.01em}
 .briefline b{color:var(--sign);font-weight:800;box-shadow:inset 0 -.26em 0 #f0c41933}
 
 /* ===== v62: spell out the two sides, right under the claim ===== */
-.briefsub{font-size:clamp(16px,1.6vw,21px);line-height:1.45;color:#e9eefb;max-width:30em;margin:0 0 14px;font-weight:600}
+.briefsub{font-size:clamp(14.5px,1.2vw,16.5px);line-height:1.42;color:#e9eefb;max-width:30em;margin:0 0 14px;font-weight:600}
 .briefsub span{display:block;padding-left:14px;border-left:3px solid #f0c419;margin-bottom:7px}
 .briefsub span+span{border-left-color:var(--mag,#e8336d)}
 
 /* ===== v64: off-duty copy column + collapsible spec idea ===== */
 .offtext p{margin:0 0 12px;color:#dbe2f0;font-size:15.5px;line-height:1.55;max-width:38em}
 .offtext p:last-child{margin-bottom:0;color:#fff;font-weight:600}
-.ownd{margin-top:26px;border:1px solid #2a3450;border-radius:16px;background:#0c1222aa;overflow:hidden}
-.ownd summary{cursor:pointer;list-style:none;padding:16px 18px;display:flex;flex-direction:column;gap:3px}
+.ownd{margin-top:30px;border:1px solid #2f3c5e;border-radius:16px;background:linear-gradient(180deg,#141d33,#0c1222);overflow:hidden;border-left:6px solid var(--sign)}
+.ownd summary{cursor:pointer;list-style:none;padding:20px 22px;display:flex;flex-direction:column;gap:5px}
 .ownd summary::-webkit-details-marker{display:none}
-.ownd summary b{font:800 18px var(--f-body);color:#fff}
-.ownd summary span{font-size:14px;color:var(--muted)}
+.ownd summary b{font:900 clamp(20px,2vw,27px)/1.1 var(--f-head,var(--f-body));color:#fff;text-transform:uppercase;letter-spacing:.01em}
+.ownd summary span{font-size:15px;color:#cfd8ee}
 .ownd summary:hover b{color:var(--sign)}
-.ownd summary::after{content:'Open ▾';position:absolute;right:18px;margin-top:2px;font:700 13px var(--f-body);color:var(--sign)}
+.ownd summary::after{content:'Open ▾';position:absolute;right:20px;top:22px;font:800 13px var(--f-body);color:var(--ink);background:var(--sign);border-radius:999px;padding:7px 13px}
 .ownd{position:relative}
-.ownd[open] summary::after{content:'Close ▴'}
+.ownd[open] summary::after{content:'Close ▴';background:#2a3450;color:#fff}
 .ownd[open] summary{border-bottom:1px solid #2a3450;margin-bottom:16px}
 .ownd .ideacar{padding:0 18px 18px}
 
@@ -1350,7 +1350,7 @@ html,body{overflow-anchor:none}
       <div class="pp-cover"><small>REPUBLIC OF</small><b>WANDERLUST</b><span class="emb">✈</span><small>Tap to open the journey</small></div>
       <div class="pp-page"><div class="pp-h">VISAS &amp; ENTRIES</div><div class="pp-stamps" id="ppStamps"></div><div class="pp-count"><b id="ppN">0</b> countries before 25</div></div>
     </div>
-    <div><button type="button" class="flipc" id="flipc" aria-label="Photo of Tanisha. Tap to flip for a fun fact."><span class="in"><span class="fr"><img id="ffimg" alt="Photo of Tanisha"><span class="n" id="ffn">1 / 6</span></span><span class="bk" id="ffbk"></span></span></button><div class="fliphint" id="ffhint">Tap the photo for the story behind it, then tap again for the next one.</div></div>
+    <div><button type="button" class="flipc" id="flipc" aria-label="Photo of Tanisha. Tap to flip for a fun fact."><span class="in"><span class="fr"><img id="ffimg" alt="Photo of Tanisha"><span class="n" id="ffn">1 / 6</span></span><span class="bk" id="ffbk"></span></span></button><div class="fliphint" id="ffhint">Tap the photo for the story behind it.</div></div>
     <div class="offtext">
       <p>I have been to 25 countries before turning 25, and I spent more of that time underwater than on land. Scuba and snorkelling are the closest thing I have to a reset button. They also taught me that the interesting things are rarely on the surface.</p>
       <p>On campus I play pickleball, table tennis, basketball and a genuinely average game of squash. A professor who taught us frisbee explained that the sport treats its Spirit of the Game trophy as seriously as the winner's trophy. That has stayed with me longer than most things I have been taught about strategy. How you play counts as much as whether you win.</p>
@@ -1385,18 +1385,17 @@ html,body{overflow-anchor:none}
         <span class="mail" id="mail">tanishasaxena77@gmail.com</span>
         <a class="btn y" id="copyBtn" href="mailto:tanishasaxena77@gmail.com?subject=Saw%20your%20portfolio%2C%20I%20want%20to%20hire%20you%20as%20my%20CMO">Email me</a>
         <a class="btn" href="https://www.linkedin.com/in/tanisha-saxena-70922a183/" target="_blank" rel="noopener">DM on LinkedIn</a>
-        <a class="btn" href="https://www.instagram.com/tanisha_saxena07" target="_blank" rel="noopener">DM on Instagram</a>
       </div>
     </div>
     <div class="ticket">
       <h4>Journey receipt</h4>
       <div style="color:var(--muted)">Tanisha Line · single journey · <span id="tFor">towards your team</span></div>
       <table>
-        <tr><td>01 KPMG · Insight</td><td>5% YoY growth</td></tr>
-        <tr><td>02 Creator · Attention</td><td>~50 brand collaborations</td></tr>
-        <tr><td>03 Azure Finds · Conversion</td><td>₹10L+ sales</td></tr>
+        <tr><td>01 KPMG · Insight</td><td>14 client engagements</td></tr>
+        <tr><td>02 Creator · Attention</td><td>8 years of audience</td></tr>
+        <tr><td>03 Azure Finds · Conversion</td><td>₹10L+ in sales</td></tr>
         <tr><td>04 Wireworks · Community</td><td>~1 in 5 hires</td></tr>
-        <tr><td>05 ISB · Strategy</td><td>100+ donors</td></tr>
+        <tr><td>05 ISB · Strategy</td><td>450 kg less dry waste</td></tr>
         <tr><td><b>Fare</b></td><td>One interview</td></tr>
       </table>
       <span class="rstamp" id="rstamp" aria-hidden="true"><i class="hd"></i><i class="nk"></i><i class="bs"></i><i class="rb"></i></span><span class="stampb" id="stampb" aria-hidden="true"><b>Journey</b><b>complete</b><small>TANISHA LINE · 5/5</small></span>
