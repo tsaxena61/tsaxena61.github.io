@@ -180,7 +180,7 @@ h1 em{font-style:normal;color:var(--line)}
 .ring{position:absolute;left:28px;top:-26px;width:96px;height:96px;border-radius:50%;border:8px solid #fffbea;box-shadow:0 0 20px #fff6c8;z-index:-1}
 .mood{width:250px;height:200px;background:#c49a6c;border-radius:6px;padding:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;box-shadow:inset 0 0 0 6px #a37c52}
 .mood i{background:var(--p);border:5px solid #fff;border-bottom-width:14px;transform:rotate(var(--r));box-shadow:0 3px 6px #0003}
-.stickers{width:290px;display:flex;flex-wrap:wrap;gap:8px}
+.stickers{width:425px;display:flex;flex-wrap:wrap;gap:7px}
 .stk{border:0;border-radius:999px;padding:8px 12px;font-weight:700;font-size:15px;color:#fff;transform:rotate(var(--r));box-shadow:0 4px 0 #0002;transition:transform .2s}
 .stk:hover{transform:rotate(0) scale(1.08)}
 .beanbag{position:absolute;left:880px;bottom:142px;width:200px;height:110px;border-radius:100px 100px 30px 30px;background:#ffc2b3}
@@ -751,7 +751,7 @@ body{overflow-x:clip}
 .hero .lede{font-size:clamp(14.5px,1.1vw,16.5px)}
 .hero{gap:20px}
 /* brands block */
-.brandsblk{position:absolute;left:40px;top:510px;width:430px;z-index:5}
+.brandsblk{position:absolute;left:40px;top:540px;width:430px;z-index:5}
 .brandsblk .bl{font:700 12px var(--f-body);letter-spacing:.12em;color:#8a3a62;margin-bottom:8px;background:#fff6;display:inline-block;padding:2px 8px;border-radius:6px}
 /* insights clipboard */
 .clip{position:relative;width:240px;padding:26px 14px 14px;background:#b07a45;border-radius:12px;box-shadow:0 10px 20px #0004,inset 0 0 0 4px #8d5e31}
@@ -1176,6 +1176,7 @@ html,body{overflow-anchor:none}
   .svcrow .st{display:none}
   .svcrow .bd{padding:0 12px 14px 50px}
 }
+#h-comp .tip{top:auto;bottom:-32px}
 </style>
 
 <section class="platform"><div class="wrap">
@@ -1542,7 +1543,7 @@ strip.appendChild(el(shell(0,'linear-gradient(#d9deea 0 62%,#c8cfdd 62%)',
  hot('h-laptop',620,388,'Run the benchmark','<div class="k-laptop" style="position:relative"><div class="scr">'+Array.from({length:18},(_,j)=>'<i'+(j===11?' class="me"':'')+'></i>').join('')+'</div><div class="base"></div></div>',190,130)+
  hot('h-case',826,432,'Open the briefcase','<div class="k-case"></div>',120,86)+
  hot('h-chart',950,300,'Flip the chart','<div class="k-chart"><svg viewBox="0 0 200 140"><polyline points="10,120 50,105 90,110 130,70 170,40 190,30" fill="none" stroke="#00338D" stroke-width="6" stroke-linecap="round"/><text x="10" y="24" font-size="22" font-weight="800" fill="#141a26" font-family="Big Shoulders Display,sans-serif">+5% YoY</text></svg></div>',230,170)+
- '<img src="data:image/webp;base64,'+LOGOIMG.kpmg+'" alt="KPMG logo" style="position:absolute;left:44px;top:530px;width:170px;z-index:4;border-radius:6px;background:#fff;padding:8px;box-shadow:0 6px 14px #0003">'+
+ '<img src="data:image/webp;base64,'+LOGOIMG.kpmg+'" alt="KPMG logo" style="position:absolute;left:44px;top:600px;width:170px;z-index:4;border-radius:6px;background:#fff;padding:8px;box-shadow:0 6px 14px #0003">'+
  hot('h-cup',552,456,'Coffee?','<div class="k-cup"><span class="steam"></span><span class="steam"></span></div>',56,62)
 )));
 
@@ -1572,7 +1573,7 @@ strip.appendChild(el(shell(2,'linear-gradient(#f3e3c8 0 62%,#e6cfa8 62%)',
 // coach 4 wireworks: tall windows with cranes, notice board, gauges
 strip.appendChild(el(shell(3,'linear-gradient(#dcebd2 0 62%,#c8dcbc 62%)',
  '<div class="winrow" style="left:420px;top:92px;gap:18px">'+[0,1,2].map(()=>'<div class="win tallwin" style="border-radius:44px"><div class="scenery" style="background:linear-gradient(#bfe0f5,#e8f4fb)">'+Array.from({length:6},()=>'<span class="crane"></span>').join('')+'</div></div>').join('')+'</div>'+
- '<img src="'+IMG.wwlogo+'" alt="Wireworks logo" style="position:absolute;left:44px;top:506px;width:180px;z-index:4;border-radius:6px;box-shadow:0 6px 14px #0003">'+plaque(3,40,90,'July 2025 to April 2026 · social media management','~1 in 5','Wireworks is an IT infrastructure company: network cabling, AV and data centres for Fortune 500 clients. B2B hiring runs on trust, so I gave its page a voice. One city and one team at a time, in carousels with real faces and a steady rhythm, which tripled the following in ten months.',[['Tap to see the LinkedIn page','https://www.linkedin.com/company/wireworks-div.-of-infiniti-power-pvt.ltd.-/']])+
+ '<img src="'+IMG.wwlogo+'" alt="Wireworks logo" style="position:absolute;left:44px;top:600px;width:180px;z-index:4;border-radius:6px;box-shadow:0 6px 14px #0003">'+plaque(3,40,90,'July 2025 to April 2026 · social media management','~1 in 5','Wireworks is an IT infrastructure company: network cabling, AV and data centres for Fortune 500 clients. B2B hiring runs on trust, so I gave its page a voice. One city and one team at a time, in carousels with real faces and a steady rhythm, which tripled the following in ten months.',[['Tap to see the LinkedIn page','https://www.linkedin.com/company/wireworks-div.-of-infiniti-power-pvt.ltd.-/']])+
  '<div class="board4" style="position:absolute;left:830px;top:70px;z-index:4"><div class="ttl">NOTICE BOARD · POSTS I MADE FOR THE PAGE</div><div class="carwrap"><button type="button" class="arr l" id="carP" aria-label="Previous post">‹</button><button type="button" class="arr r" id="carN" aria-label="Next post">›</button><div class="carousel" id="car">'+
  (LIP.length?LIP:[{t:'Hiring in your city: city-specific posts so people see jobs near them'},{t:'For your exact role: role-specific slides, not a generic "we\'re hiring"'},{t:'Built on real skills: each carousel lists the skills that role needs'},{t:'40% click-through, against a 20% page average'}]).map((p,j)=>'<div class="sl'+(p.du?'':' txt')+'" style="transform:translateX('+(j*100)+'%)">'+(p.du?'<img src="'+p.du+'" alt="'+p.t.replace(/"/g,'&quot;')+'"><div class="cpt">'+p.t+'</div>':'<b>'+p.t+'</b>')+'</div>').join('')+
  '<div class="dots">'+(LIP.length?LIP:[0,0,0,0]).map((_,j)=>'<i'+(j?'':' class="on"')+'></i>').join('')+'</div></div></div><div style="text-align:center"><span class="cnt2" id="carC">1 / '+Math.max(LIP.length,4)+' · tap the arrows</span></div></div>'+
