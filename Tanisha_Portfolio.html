@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanisha Saxena — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDE8DC;
+    --card:#F7F4EC;
+    --card-2:#E4DECE;
+    --ink:#17231C;
+    --ink-soft:#4A564D;
+    --brick:#8A3324;
+    --brick-soft:#B5502E;
+    --gold:#8A6D1F;
+    --line: rgba(23,35,28,0.18);
+    --line-strong: rgba(23,35,28,0.32);
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans',sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+  a{color:var(--brick);}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .serif{font-family:'Fraunces',serif;}
+
+  /* stitch divider — the recurring seam motif */
+  .stitch{
+    height:1px;
+    background-image:repeating-linear-gradient(90deg, var(--ink) 0 7px, transparent 7px 14px);
+    opacity:0.35;
+    margin:0;
+  }
+
+  /* fabric swatch tag — signature element */
+  .tag{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--ink);
+    background:var(--card);
+    border:1.5px dashed var(--line-strong);
+    border-radius:2px;
+    padding:7px 12px;
+    text-decoration:none;
+    transform:rotate(var(--rot,-1.2deg));
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .tag:hover{border-color:var(--brick); transform:rotate(0deg);}
+  .tag .dot{width:5px;height:5px;border-radius:50%;background:var(--brick);flex:0 0 auto;}
+
+  /* HERO */
+  header.hero{padding:76px 0 40px;}
+  .hero h1{
+    font-size:clamp(34px,5.4vw,54px);
+    font-weight:500;
+    line-height:1.08;
+    margin:18px 0 22px;
+    max-width:14ch;
+  }
+  .hero h1 em{font-style:italic;color:var(--brick);font-weight:400;}
+  .hero p.lede{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:56ch;
+    margin:0 0 30px;
+  }
+  .tagrow{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;}
+  .tagrow .tag:nth-child(1){--rot:-1.6deg;}
+  .tagrow .tag:nth-child(2){--rot:1deg;}
+  .tagrow .tag:nth-child(3){--rot:-0.8deg;}
+
+  /* ABOUT BRIDGE */
+  .bridge{padding:44px 0;}
+  .bridge p{font-size:17px;max-width:64ch;color:var(--ink-soft);margin:0;}
+  .bridge p + p{margin-top:14px;}
+  .bridge strong{color:var(--ink);font-weight:600;}
+
+  /* CASE STUDY */
+  .case{padding:56px 0;}
+  .case .tag{margin-bottom:22px;}
+  .ledger{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:20px;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:14px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+  }
+  .ledger .stat{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:clamp(30px,5vw,42px);
+    font-weight:500;
+    color:var(--brick);
+    white-space:nowrap;
+  }
+  .ledger .stat-label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--ink-soft);
+    max-width:26ch;
+  }
+  .case h2{
+    font-size:clamp(22px,3.2vw,30px);
+    font-weight:500;
+    line-height:1.25;
+    margin:0 0 26px;
+    max-width:24ch;
+  }
+  .grid4{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px 28px;
+  }
+  .cell .eyebrow{margin-bottom:6px;display:block;}
+  .cell p{margin:0;font-size:15px;color:var(--ink-soft);}
+  .brandtags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .brandtags .tag{font-size:11px;padding:5px 10px;}
+  .brandtags .tag:nth-child(1){--rot:-1deg;}
+  .brandtags .tag:nth-child(2){--rot:0.8deg;}
+  .brandtags .tag:nth-child(3){--rot:-1.6deg;}
+  .brandtags .tag:nth-child(4){--rot:1.2deg;}
+  .brandtags .tag:nth-child(5){--rot:-0.6deg;}
+
+  /* PROOF STRIP */
+  .proof{padding:48px 0; }
+  .proof-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .proof-row p{max-width:48ch;color:var(--ink-soft);font-size:15px;margin:0;}
+  .links{display:flex;gap:12px;flex-wrap:wrap;}
+  .links .tag:nth-child(1){--rot:-1deg;}
+  .links .tag:nth-child(2){--rot:1.4deg;}
+  .links .tag:nth-child(3){--rot:-0.6deg;}
+  .links .tag:nth-child(4){--rot:1deg;}
+
+  footer{padding:36px 0 60px;}
+  footer .foot-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+  footer .serif{font-size:18px;}
+  footer .eyebrow{opacity:0.7;}
+
+  @media (max-width:640px){
+    .grid4{grid-template-columns:1fr;}
+    .wrap{padding:0 20px;}
+    header.hero{padding:52px 0 32px;}
+    .ledger{flex-direction:column;align-items:flex-start;gap:8px;}
+  }
+
+  :focus-visible{outline:2px solid var(--brick); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="eyebrow">Digital marketing strategist — campaign ideation across platforms</span>
+    <h1 class="serif">I build audiences and campaigns that move <em>real numbers.</em></h1>
+    <p class="lede">Eight years running my own content platform. Three ventures, three different business models — in-house B2B, D2C, and personal audience — each one a proof point of the same skill. Currently at ISB, looking for a team to bring it to next.</p>
+    <div class="tagrow">
+      <a href="#wireworks" class="tag"><span class="dot"></span>Wireworks — employer brand</a>
+      <a href="#azurefinds" class="tag"><span class="dot"></span>Azure Finds — D2C</a>
+      <a href="#creator" class="tag"><span class="dot"></span>Instagram — creator economy</a>
+    </div>
+  </header>
+
+  <div class="stitch"></div>
+
+  <section class="bridge">
+    <p><strong>The short version:</strong> I've spent eight years learning what makes an audience trust a brand enough to buy from it — first testing it out loud on my own platform, then proving it for a ₹400+ Cr family business, a D2C brand I co-founded, and twenty-plus paid brand partnerships along the way.</p>
+    <p>Three years at KPMG in between taught me how to read a business the way analysts do — investor perception, disclosure gaps, what actually moves the needle for a company's stakeholders. That's not the usual route into marketing. I think that's the point.</p>
+  </section>
+
+  <div class="stitch"></div>
+
+  <!-- CASE STUDY 1 — WIREWORKS -->
+  <section class="case" id="wireworks">
+    <a href="#" class="tag" style="--rot:-1.4deg;"><span class="dot"></span>Wireworks · Div. of Infiniti Power · Jul 2025–Present</a>
+    <div class="ledger">
+      <div class="stat-label">Organic LinkedIn growth<br>in under 12 months</div>
+      <div class="stat">4×</div>
+    </div>
+    <h2 class="serif">How a 400+ crore family business became a genuine hiring channel — without a media budget</h2>
+    <div class="grid4">
+      <div class="cell">
+        <span class="eyebrow">Context</span>
+        <p>A legacy industrial company with real scale but no structured social presence — no content strategy, no employer brand, no system for turning existing goodwill into visibility.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Approach</span>
+        <p>Competitive benchmarking against comparable B2B/industrial brands, algorithm-informed content strategy, and city-level role-specific hiring carousels tailored to actual open roles.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Execution</span>
+        <p>Consistent 7–8 post/week cadence, internal stakeholder activation to seed early engagement, and a parallel 2,000+ member WhatsApp employer-branding community built from referral loops.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Results</span>
+        <p>Followers grew several-fold organically; engagement lifted to 20%+, with hiring carousels hitting 35–40%; LinkedIn now drives roughly a fifth of total hires.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch"></div>
+
+  <!-- CASE STUDY 2 — AZURE FINDS -->
+  <section class="case" id="azurefinds">
+    <a href="#" class="tag" style="--rot:1.1deg;"><span class="dot"></span>Azure Finds · Co-founder · Jan 2021–Dec 2023</a>
+    <div class="ledger">
+      <div class="stat-label">Gross merchandise value<br>across 2,000+ transactions</div>
+      <div class="stat">₹10L+</div>
+    </div>
+    <h2 class="serif">Building a pre-loved fashion brand from an Instagram DM list — and making personalization the moat</h2>
+    <div class="grid4">
+      <div class="cell">
+        <span class="eyebrow">Context</span>
+        <p>Fast fashion's overconsumption problem, no funding, no team — just an Instagram account and a thesis that resale could feel considered instead of transactional.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Approach</span>
+        <p>Instagram-first acquisition through DMs, story polls, and flash sales; personalization — handwritten notes, tailored recommendations — as a deliberate moat against larger thrift competitors.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Execution</span>
+        <p>Owned sourcing, curation, pricing, and fulfilment end to end; built a 150+ supplier network through outreach and inbound interest; A/B tested content formats for conversion.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Results</span>
+        <p>4,000+ followers, 500+ active customers, 2,000+ transactions, and a 30%+ uptick in repeat orders directly tied to the personalization strategy.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch"></div>
+
+  <!-- CASE STUDY 3 — CREATOR -->
+  <section class="case" id="creator">
+    <a href="#" class="tag" style="--rot:-0.9deg;"><span class="dot"></span>@tanisha_saxena07 · Apr 2018–Present · 8 years</a>
+    <div class="ledger">
+      <div class="stat-label">Affiliate revenue driven<br>for one brand partner</div>
+      <div class="stat">₹7L+</div>
+    </div>
+    <h2 class="serif">Eight years on the creator side of brand campaigns — and what that teaches about the brand side</h2>
+    <div class="grid4">
+      <div class="cell">
+        <span class="eyebrow">Context</span>
+        <p>Started posting about thrifted fashion in 2018, pivoted fully to sustainable fashion and lifestyle content in 2020 — one of India's earlier dedicated sustainability platforms.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Approach</span>
+        <p>Trust-first, platform-native storytelling over polish; early adoption of new formats (Trial Reels, Edits app, broadcast channels) ahead of mainstream brand adoption.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Execution</span>
+        <p>300+ posts across 8 years; 20+ paid and gifted brand partnerships end-to-end — brief, production, performance reporting; selected 1 of 10 creators nationally for Tata's Taneira programme.</p>
+      </div>
+      <div class="cell">
+        <span class="eyebrow">Results</span>
+        <p>13K+ Instagram, 70K+ Pinterest; 3–5% engagement above industry benchmark across all partnerships; one Reel reached 922K views and 19K shares.</p>
+      </div>
+    </div>
+    <div class="brandtags">
+      <span class="tag">The Whole Truth — ₹7L+ affiliate revenue</span>
+      <span class="tag">The Bare Necessities — brand partner</span>
+      <span class="tag">Taneira / Tata — creator programme</span>
+      <span class="tag">L'Oréal — brand partner</span>
+      <span class="tag">Levi's — brand partner</span>
+    </div>
+  </section>
+
+  <div class="stitch"></div>
+
+  <section class="proof">
+    <div class="proof-row">
+      <p><strong style="color:var(--ink)">Underneath all three:</strong> three years at KPMG's CFO Finance Advisory practice — investor relations and business consulting for large-cap clients — is the analytical layer every campaign above was built on. Instagram metrics verified independently via a claimed Qoruz creator profile.</p>
+      <div class="links">
+        <a href="#" class="tag">LinkedIn ↗</a>
+        <a href="#" class="tag">Substack ↗</a>
+        <a href="#" class="tag">Instagram ↗</a>
+        <a href="#" class="tag">Résumé ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch"></div>
+
+  <footer>
+    <div class="foot-row">
+      <span class="serif">Tanisha Saxena</span>
+      <span class="eyebrow">ISB PGP 2026–27 · Mohali</span>
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
