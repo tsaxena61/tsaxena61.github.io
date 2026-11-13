@@ -2165,6 +2165,18 @@ layout();
     sec.appendChild(w);
     ride.parentNode.insertBefore(sec,ride.nextSibling);
   }
+  /* on phones the train is hidden, so "Walk through this coach" goes to the card */
+  document.addEventListener('click',function(e){
+    if(!MQ.matches)return;
+    var b=e.target.closest&&e.target.closest('[data-go]');
+    if(!b)return;
+    var i=parseInt(b.getAttribute('data-go'),10);
+    var card=document.querySelectorAll('.mcoach')[i];
+    if(!card)return;
+    e.preventDefault(); e.stopPropagation();
+    card.scrollIntoView({behavior:'smooth',block:'start'});
+  },true);
+
   function check(){ if(MQ.matches) build(); }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',check);
   else check();
