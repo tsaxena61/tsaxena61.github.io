@@ -1189,6 +1189,32 @@ html,body{overflow-anchor:none}
 .see{padding:7px 2px !important;margin-top:3px !important}
 @media (pointer:coarse){.see{padding:10px 4px !important}}
 .passport small,.pp small{font-size:11px !important}
+
+/* ===== v77: a real phone layout instead of a shrunken train ===== */
+#phonestack{display:none}
+@media (max-width:900px){
+  #ride{display:none !important}
+  #phonestack{display:block}
+  .mcoach{background:#0c1222;border:1px solid #223055;border-left:6px solid var(--c,#f0c419);
+          border-radius:16px;padding:0;margin:14px 0;overflow:hidden}
+  .mcoach .plaque{position:static !important;width:auto !important;max-width:none !important;
+          transform:none !important;margin:0 !important;box-shadow:none !important;
+          border-radius:0 !important;background:#f7f4ec !important;color:#1a2235 !important;
+          padding:16px 16px 18px !important}
+  .mcoach .plaque h3{color:#10182b !important;font-size:34px !important}
+  .mcoach .plaque .big{font-size:56px !important}
+  .mcoach .plaque p{color:#2a3350 !important;font-size:15.5px !important;line-height:1.45 !important}
+  .mcoach .plaque .yr{color:#5b6782 !important}
+  .mcoach .plaque .case{color:#fff !important;min-height:44px;padding:11px 18px !important}
+  .mcoach .plaque .links a{color:var(--cc) !important;display:inline-block;padding:8px 0;font-weight:700}
+  .mprops{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px 14px;background:#0c1222}
+  .mprop{appearance:none;border:1px solid #2f3c5e;background:#111a2e;color:#fff;
+         font:700 13.5px var(--f-body);padding:10px 13px;border-radius:999px;cursor:pointer;
+         min-height:40px;text-align:left}
+  .mprop:active{background:#1b2744}
+  .mprops::before{content:'Tap to open';display:block;width:100%;font:800 11px var(--f-body);
+         letter-spacing:.12em;text-transform:uppercase;color:#8392b8;margin-bottom:2px}
+}
 </style>
 
 <section class="platform"><div class="wrap">
@@ -2075,3 +2101,75 @@ if(SW){document.documentElement.classList.add('swmode');if(!isCoarse)document.do
 layout();
 })();
 </script>
+
+<script>
+/* v77: on phones, present each coach as a card instead of the horizontal train */
+(function(){
+  var MQ=window.matchMedia('(max-width:900px)');
+  var built=false;
+  function build(){
+    if(built)return;
+    var ride=document.getElementById('ride');
+    var coaches=document.querySelectorAll('.coach');
+    if(!ride||!coaches.length)return;
+    built=true;
+    var COL=['#f0c419','#e8542f','#2f9e6e','#3f7fd8','#a05fd8'];
+    var sec=document.createElement('section');
+    sec.id='phonestack'; sec.className='sec';
+    var w=document.createElement('div'); w.className='wrap';
+    w.innerHTML='<div class="eyebrow">The line, stop by stop</div>'+
+                '<h2>Five coaches, five places I worked</h2>'+
+                '<p class="sub">Every stop below is one of them. Open a case to read it in full, or tap anything in the list to see that piece of the work.</p>';
+    coaches.forEach(function(co,i){
+      var card=document.createElement('article');
+      card.className='mcoach';
+      card.style.setProperty('--c',COL[i]||'#f0c419');
+      var cc=getComputedStyle(co).getPropertyValue('--cc');
+      if(cc&&cc.trim())card.style.setProperty('--cc',cc.trim());
+      var pl=co.querySelector('.plaque');
+      if(pl){
+        var cl=pl.cloneNode(true);
+        cl.removeAttribute('id');
+        // rebind the cloned buttons to their originals so handlers still run
+        cl.querySelectorAll('[data-case],[data-go]').forEach(function(b){
+          var sel=b.hasAttribute('data-case')
+                ? '[data-case="'+b.getAttribute('data-case')+'"]'
+                : '[data-go="'+b.getAttribute('data-go')+'"]';
+          var orig=ride.querySelector(sel);
+          b.addEventListener('click',function(e){e.preventDefault();if(orig)orig.click()});
+        });
+        card.appendChild(cl);
+      }
+      var hots=co.querySelectorAll('.hot[id]');
+      if(hots.length){
+        var row=document.createElement('div'); row.className='mprops';
+        hots.forEach(function(h){
+          var tip=h.querySelector('.tip');
+          var label=tip?tip.textContent.trim():'';
+          if(!label)return;
+          var btn=document.createElement('button');
+          btn.type='button'; btn.className='mprop'; btn.textContent=label;
+          btn.addEventListener('click',function(){
+            var pnl=document.getElementById('panel');
+            h.click();
+            setTimeout(function(){
+              if(pnl&&pnl.hidden){var cb=card.querySelector('[data-case]');if(cb)cb.click()}
+            },140);
+          });
+          row.appendChild(btn);
+        });
+        if(row.children.length)card.appendChild(row);
+      }
+      w.appendChild(card);
+    });
+    sec.appendChild(w);
+    ride.parentNode.insertBefore(sec,ride.nextSibling);
+  }
+  function check(){ if(MQ.matches) build(); }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',check);
+  else check();
+  setTimeout(check,400);
+  if(MQ.addEventListener)MQ.addEventListener('change',check);
+})();
+</script>
+
