@@ -1196,6 +1196,26 @@ html,body{overflow-anchor:none}
   .scrollhint button{padding:11px 15px;font-size:14px;min-height:44px}
 }
 @media (max-width:700px){#bubble{top:auto !important;bottom:84px !important;transform:none !important}}
+
+/* ===== v83: let every grid/flex track actually shrink on small screens ===== */
+.hero>*,.end>*,.offgrid>*,.svcboard>*,.proof>*,.cards>*{min-width:0}
+@media (max-width:820px){
+  .hero,.end{grid-template-columns:minmax(0,1fr) !important}
+  .hero>*,.end>*{min-width:0;max-width:100%}
+  .hero .eyebrow,.hero .merge,.hero .headrow,.hero .proof,
+  .hero .board,.hero .boarding,.hero .expressbar,.hero .lede,
+  .hero .briefline,.hero .briefsub{max-width:100%}
+  .hero .proof{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+  .mpic{max-width:100%;justify-self:center}
+  .mpic img{max-width:100%;height:auto}
+}
+
+/* ===== v84: on phones the headline gets the full width, photo sits under it ===== */
+@media (max-width:700px){
+  .headrow{grid-template-columns:minmax(0,1fr) !important;gap:14px}
+  .headrow h1{overflow-wrap:break-word;hyphens:none}
+  .mpic{max-width:190px;justify-self:start !important;transform:rotate(-1.5deg)}
+}
 </style>
 
 <section class="platform"><div class="wrap">
@@ -1204,7 +1224,7 @@ html,body{overflow-anchor:none}
     <div>
       <div class="eyebrow">Tanisha Saxena · Marketing and strategy · ISB PGP 2026–27</div>
       <div class="merge">HELLO <b id="mergeCo">{{ company_name }}</b>,</div>
-      <div class="headrow"><h1>Five coaches.<br>One <em>marketer.</em></h1><figure class="mpic"><img data-ph="hero" alt="Portrait of Tanisha Saxena"></figure></div>
+      <div class="headrow"><h1>Five coaches.<br>One <em>marketer and strategist.</em></h1><figure class="mpic"><img data-ph="hero" alt="Portrait of Tanisha Saxena"></figure></div>
       <p class="briefline">Hi, I'm Tanisha and I have sat on <b>both sides of the brief.</b></p><p class="briefsub"><span>As the brand, I have written the brief.</span><span>As the creator, I have decided whether that brand was worth my audience's trust.</span></p><p class="lede">Four years at KPMG learning to read businesses, eight years building an audience, a store of my own, and a B2B brand grown from the inside. I am looking for roles where marketing and strategy meet: growth, brand and digital, general management, strategy, founder's office and chief of staff. Board the train and walk through all five with me.</p>
       <div class="proof"><div><b>5% YoY</b><span>revenue growth (a ₹462 Cr quarter) for a footwear brand at KPMG, across 14 client engagements</span></div><div><b>$23M</b><span>margin uplift modelled for MakeMyTrip, national top 5% of 2,300 teams</span></div><div><b>14K</b><span>followers built over 8 years of honest reviews, with no ad spend</span></div><div><b>₹10L+</b><span>in sales from Azure Finds, the pre-loved fashion store I co-founded</span></div><div><b>1 in 5</b><span>hires at Wireworks, a B2B firm, came through the LinkedIn page I built</span></div></div>
       <div class="board" aria-live="polite">
@@ -1422,11 +1442,11 @@ html,body{overflow-anchor:none}
     </div>
   </div>
   <div class="revwall"><h3>Before you ask</h3><div class="faq">
-    <details open><summary><span>01</span>When can you start?</summary><p>I graduate from ISB with the class of 2027 and can join right after. Until then, I'd love to take on a live project or a short sprint with your team, so you can see how I work before day one.</p></details>
+    <details open><summary><span>01</span>When can you start?</summary><p><b>May 2027.</b> I graduate from ISB with the class of 2027 and can join straight after, anywhere in India. Until then I am happy to take on a live project or a short sprint with your team, so you can see how I work before day one.</p></details>
     <details><summary><span>02</span>What roles are you looking for?</summary><p>Roles where marketing and strategy sit together: growth, brand and digital, general management, strategy, founder's office and chief of staff. Four years at KPMG taught me to read a business the way an investor does, and eight years building an audience taught me how to move one. I am at my best where content, community and commercial results meet, and where a plan has to survive contact with real numbers.</p></details>
     <details><summary><span>03</span>What do you bring that others don't?</summary><p>I've sat on every side of the brief. At KPMG I read businesses the way investors do. As a creator I've been the person brands brief, close to 50 times. As a founder I turned attention into ₹10L+ of sales. At Wireworks I made a quiet B2B page a hiring channel. So briefs, budgets and results connect from the first meeting.</p></details>
     <details><summary><span>04</span>How do you measure success?</summary><p>With one number the business truly cares about, agreed upfront: orders, hires, sign-ups or repeat purchase. Reach, saves and shares tell me what's working along the way. I review every month and move effort to whatever drives the main number.</p></details>
-    <details><summary><span>05</span>What are you excited to learn next?</summary><p>Running paid media at real scale. Everything I've grown so far has been organic, which taught me what makes people genuinely care. I've made a start with the Google Ads Search and HubSpot Content Marketing certifications, and I'm excited to pair that instinct with real ad budgets and see how much further it goes.</p></details>
+    <details><summary><span>05</span>What are you excited to learn next?</summary><p>Owning a P&amp;L end to end. I have run the demand side of one and the sourcing and pricing of another, and I want the whole thing: margin, mix and the trade-offs between them, at a scale where a call moves crores rather than lakhs.</p><p>On the marketing side, paid media. Everything I have grown so far has been organic, which taught me what actually makes people care. I have started with the Google Ads Search and HubSpot Content Marketing certifications and I want to put that instinct behind a real budget.</p></details>
     <details><summary><span>06</span>How do you like to work with a team?</summary><p>A clear brief, a number to hit and early, honest feedback. I share drafts fast, bring the data along with the idea, and pull in sales, design and leadership early so launches never stall at the last step.</p></details>
   </div></div>
 </div></section>
@@ -1820,12 +1840,12 @@ $$('.card3').forEach(b=>b.onclick=()=>{const on=!b.classList.contains('on');b.cl
 
 // v6: swipe to match
 const ROLES=[
- {r:'Brand marketing',c:'var(--c2)',ci:1,coach:'Coach 02 · Creator',get:'Someone who builds trust before asking for the sale. I\'ve done it for 8 years on my own channel, with no ad budget.',big:'~50',bl:'brand collaborations, built on years of honest reviews'},
- {r:'Growth & digital',c:'var(--c3)',ci:2,coach:'Coach 03 · Azure Finds',get:'Someone who turns attention into orders and orders into repeat orders, because I\'ve done it with my own money.',big:'₹10L+',bl:'sales across 2,000+ orders, repeat orders up 30%+'},
- {r:'Social & community',c:'var(--c4)',ci:3,coach:'Coach 04 · Wireworks',get:'Someone who grows a page organically and ties it to a business number, not just likes.',big:'~1 in 5',bl:'Wireworks hires came through the LinkedIn page I grew to 8,000+'},
- {r:'Creator & influencer',c:'var(--c2)',ci:1,coach:'Coach 02 · Creator',get:'Someone who has been the creator brands brief, so I know what makes a collaboration actually work.',big:'₹7L+',bl:'affiliate revenue for one brand, from close to 50 brand collaborations'},
- {r:'Strategy & general management',c:'var(--c1)',ci:0,coach:'Coach 01 · KPMG',get:'Someone who reads the numbers first. 4 years of consulting and investor work before business school.',big:'5% YoY',bl:'revenue growth from a new-channel plan for a ₹462 Cr brand'},
- {r:"Founder's office & chief of staff",c:'var(--c5)',ci:4,coach:'Coach 05 · ISB',get:'Someone who takes a vague problem, sizes it, and turns it into something that actually ships. Case competition finals and council work are where I practise exactly that.',big:'450 kg',bl:'less dry waste a year, by changing the default rather than the posters'}];
+ {r:'Brand marketing',c:'var(--c2)',ci:1,coach:'Coach 02 · Creator',get:'Someone who has built a brand from nothing and can tell you why people stayed. Eight years of positioning, pricing my own collaborations and deciding what my name goes on, with no ad budget behind any of it.',big:'~50',bl:'brand collaborations, running 3 to 5% above the category engagement benchmark'},
+ {r:'Growth & digital',c:'var(--c3)',ci:2,coach:'Coach 03 · Azure Finds',get:'Someone who owns the funnel and the unit economics under it. At Azure Finds I set sourcing, pricing and the repeat-purchase plan myself, with my own money on the line.',big:'₹10L+',bl:'sales across 2,000+ orders, repeat orders up 30%+ on a personalisation bet I made'},
+ {r:'Social & community',c:'var(--c4)',ci:3,coach:'Coach 04 · Wireworks',get:'Someone who ties a channel to a business number. At Wireworks I benchmarked competitors first, built a hiring-led content plan, then reported it as cost per hire rather than as likes.',big:'~1 in 5',bl:'hires came through the LinkedIn page I grew to 8,000+, on no media spend'},
+ {r:'Strategy & consulting',c:'var(--c1)',ci:0,coach:'Coach 01 · KPMG',get:'Someone who sizes a problem before solving it. Four years at KPMG in CFO Finance Advisory, 14 engagements across six industries: investor perception studies, peer benchmarking and channel strategy for large-cap clients.',big:'5% YoY',bl:'revenue growth from the new-channel plan I built for a ₹462 Cr brand'},
+ {r:'General management & P&L',c:'var(--c3)',ci:2,coach:'Coach 03 · Azure Finds',get:'Someone who has carried a P&L rather than a line in one. I ran Azure Finds end to end, sourcing through fulfilment, and at ISB I am a marketing major taking the finance and operations electives on purpose.',big:'150+',bl:'suppliers and 500+ customers managed, with pricing and margin owned by me'},
+ {r:"Founder's office & chief of staff",c:'var(--c5)',ci:4,coach:'Coach 05 · ISB',get:'Someone who takes a vague problem, sizes it against a clock, and ships the version that survives real constraints. Three national case competition finals and a year on the Operations & Sustainability Council are where I practise exactly that.',big:'450 kg',bl:'less dry waste a year, won by changing procurement and defaults, not by running a campaign'}];
 const MAIL=$('#mail').textContent.trim();
 let mi=0;
 function mRender(){const st=$('#mstack');
